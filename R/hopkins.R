@@ -1,5 +1,27 @@
-hopkins <-
-function(data,n,byrow=F,header=F) 
+
+#' @title Calculate the Hopkins' statistic
+#'
+#' Calculate the Hopkins' statistic of given data. 'n' can be set to see whether this statistic converges.
+#'
+#' Sample data must be preprocessed into dataframe or matrix form before given as the value of parameter "data".
+#'
+#' @param data a data frame or a matrix of the sample
+#' @param n an integer, the number of points selected from sample space which is also the number of points selected from the given sample(data) 
+#' @param byrow logical. If FALSE(the default)the variables is taken by columns, otherwise the variables is taken by rows.
+#' @param header logical. If FALSE(the default) the first column(or row) will be deleted in the calculation 
+#' @return the number of Hopkins' statistic will be shown in the CW.
+#' @author Luo YiLan, Zeng RuTong 670273197
+#' 
+#' @examples 
+#' x<-matrix(runif(200,1,100),50,4);
+#' hopkins(x,n=10)
+#' 
+#' @references 
+#' Lawson, R.G. and Jurs, P.C.(1990) New index for clustering tendency and its application to chemical problems. Journal of Chemical Information and Computer Sciences. (Journal of Chemical Information and Computer Sciences, 1990, 30(1):36-41)
+#' @importFrom stats dist runif
+#' @export
+#' 
+hopkins <- function(data,n,byrow=F,header=F) 
 {
   if(is.data.frame(data))
     data<-as.matrix(data)
@@ -16,7 +38,10 @@ function(data,n,byrow=F,header=F)
   {
     p[,i]<-runif(n,min=c[i],max=d[i])
   }
-  k<-round(runif(n,1,nrow(data)))
+  
+  #k<-round(runif(n,1,nrow(data)))
+  k <- sample(1:nrow(data), n)
+  
   q<-as.matrix(data[k,])
   distp=rep(0,nrow(data))
   #distq=rep(0,nrow(data)-1)
