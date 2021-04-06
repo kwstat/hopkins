@@ -1,0 +1,41 @@
+# .Rbuildignore
+
+# Do not put "LICENSE" below.  R needs to see that file.
+
+# ----- Git -----
+^.gitignore$
+
+# ----- devtools -----
+^revdep$
+
+# ----- R -----
+^\.RData$
+^\.Rhistory$
+^cran-comments\.md$
+^README\.md$
+^$NEWS\.md$
+^notes\.Rmd$
+^notes\.md$
+^data-done$
+^data-raw$
+^data-unused$
+^figure$
+^Rplots\.pdf$
+^debug\.log$
+
+# ----- RStudio -----
+^.*\.Rproj$
+^\.Rproj\.user$
+
+# ----- testthat -----
+^tests/testthat/Rplots.pdf$
+^tests/testthat/.*\.png$
+^tests/testthat/.*\.html$
+
+# ----- Travis -----
+^.travis\.yml
+
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
+^CRAN-RELEASE$

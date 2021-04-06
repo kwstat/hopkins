@@ -1,0 +1,15 @@
+Package: clustertend
+Type: Package
+Title: Check the Clustering Tendency
+Version: 1.5
+Date: 2021-04-06
+Authors@R: c(
+  person("Kevin","Wright", email="kw.stat@gmail.com", 
+  comment=c(ORCID = "0000-0002-0617-8673"), role=c("aut","cre")),
+  person("Luo","YiLan", role="aut"),
+  person("Zeng","RuTong", role="aut")
+  )
+Description: Calculate some statistics aiming to help analyzing the clustering tendency of given data. In the first version, Hopkins' statistic is implemented.
+License: GPL (>= 2)
+NeedsCompilation: no
+
