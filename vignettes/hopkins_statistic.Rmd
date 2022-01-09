@@ -1,0 +1,17 @@
+---
+title: "Will the real Hopkins statistic please stand up?"
+author: "Kevin Wright"
+date: "2022-01-06"
+bibliography: clustertend.bib
+output: 
+  rmarkdown::html_vignette:
+    md_extensions: [ 
+      "-autolink_bare_uris" 
+    ]
+vignette: >
+  %\VignetteIndexEntry{Hopkins statistic}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+Need to write something...

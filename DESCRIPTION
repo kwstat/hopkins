@@ -1,15 +1,24 @@
-Package: clustertend
+Package: hopkins
 Type: Package
-Title: Check the Clustering Tendency
-Version: 1.5
-Date: 2021-04-06
+Title: Hopkins statistic for clustering
+Version: 1.0
+Date: 2022-01-01
 Authors@R: c(
   person("Kevin","Wright", email="kw.stat@gmail.com", 
-  comment=c(ORCID = "0000-0002-0617-8673"), role=c("aut","cre")),
-  person("Luo","YiLan", role="aut"),
-  person("Zeng","RuTong", role="aut")
-  )
-Description: Calculate some statistics aiming to help analyzing the clustering tendency of given data. In the first version, Hopkins' statistic is implemented.
+  comment=c(ORCID = "0000-0002-0617-8673"), role=c("aut","cre")))
+Description: Calculate Hopkins statistic to assess the clusterability of data. See Hopkins and Skellam (1954) <doi:10.1093/oxfordjournals.aob.a083391>.
+Depends:
+  pdist
+URL: https://kwstat.github.io/hopkins
+BugReports: https://github.com/kwstat/hopkins
 License: GPL (>= 2)
 NeedsCompilation: no
-
+RoxygenNote: 7.1.2
+Suggests: 
+  knitr,
+  rmarkdown,
+  spatstat.data,
+  testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Encoding: UTF-8
