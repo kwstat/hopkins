@@ -2,6 +2,8 @@
 
 export(hopkins)
 export(hopkins.pval)
+importFrom(RANN,nn2)
+importFrom(donut,nnt)
 importFrom(pdist,pdist)
 importFrom(stats,pbeta)
 importFrom(stats,runif)

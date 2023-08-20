@@ -2,13 +2,7 @@
 % Please edit documentation in R/hopkins.R
 \name{hopkins.pval}
 \alias{hopkins.pval}
-\title{Calculate the p-value for Hopkins statistic
-
-Calculate the p-value for Hopkins statistic
-
-Under null hypothesis of spatial randomness, Hopkins statistic has a
-Beta(m,m) distribution, where 'm' is the number of events/points sampled.
-This function calculates the p-value for the statistic.}
+\title{Calculate the p-value for Hopkins statistic}
 \usage{
 hopkins.pval(x, n)
 }
@@ -22,9 +16,8 @@ A p-value between 0 and 1.
 }
 \description{
 Calculate the p-value for Hopkins statistic
-
-Calculate the p-value for Hopkins statistic
-
+}
+\details{
 Under null hypothesis of spatial randomness, Hopkins statistic has a
 Beta(m,m) distribution, where 'm' is the number of events/points sampled.
 This function calculates the p-value for the statistic.

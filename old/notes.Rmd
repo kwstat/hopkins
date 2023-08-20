@@ -1,16 +1,24 @@
-% clustertend/notes.md
+---
+title: Hopkins package notes
+---
 
-todo: Create an example with two-dimensional scatterplot that is highly correlated, so only 1 cluster.
+Wright, Kevin (2023).
+Will the Real Hopkins Statistic Please Stand Up?
+The R Journal, 14, 281-291.
+https://journal.r-project.org/articles/RJ-2022-055/
+https://doi.org/10.32614/RJ-2022-055 (not yet active)
 
 Notes on public literature and code related to Hopkins statistic.
 
 "fixme" means I should contact the authors to suggest corrections.
 
-# R
 
-## factoextra
+### R / factoextra
 
-These two examples are from the `factoextra::get_clust_tendency` function, which uses a copy of the `clustertend::hopkins` code and therefore (incorrectly) uses d=1. fixme
+Update: Submitted bug report https://github.com/kassambara/factoextra/issues/160
+
+These two examples are from the `factoextra::get_clust_tendency` function, which uses a copy of the `clustertend::hopkins` code and therefore (incorrectly) uses d=1.
+
 
 ```{r}
 library(factoextra)
@@ -28,7 +36,7 @@ get_clust_tendency(random_df, n = 50)
 hopkins::hopkins(random_df, m=50, d=1)
 ```
 
-## spatstat.core
+### R / spatstat.core
 
 Seems to be correct for 2-column data. Probably not for 3-column data etc. fixme
 
@@ -49,7 +57,9 @@ hopskel.test(redwood, alternative="clustered") # p-value .00001
 hopkins::hopkins( as.data.frame(redwood), m=10) # .780 to .835
 ```
 
-## parameters
+### R / parameters
+
+Update: The code has been re-factored and I cannot find Hopkins statistic.
 
 The code seems to be taken from clustertend::hopkins and likely uses d=1.
 fixme
@@ -61,46 +71,84 @@ library(parameters)
 check_clusterstructure(iris[, 1:4])
 ```
 
-# Python
+### Python / romusters
 
-Appears to use d=1. fixme
+Update: submitted bug: https://github.com/romusters/hopkins/issues/1
+Appears to use d=1.
 https://github.com/romusters/hopkins
 https://github.com/romusters/hopkins/blob/master/main.py
 
+### Shushil Deore
 
-Appears to use d=1. fixme
+Update: Send email to sushildeore99@gmail.com
+
+Appears to use d=1.
 https://sushildeore99.medium.com/really-what-is-hopkins-statistic-bad1265df4b
 
+### Python / Hopkins-Test
 
-Hard to read.  Appears to use d=1. fixme
+Update: Submitted bug https://github.com/mhatim99/Hopkins-Test/issues/1
+
+Hard to read.  Appears to use d=1.
 https://natureecoevocommunity.nature.com/posts/do-we-do-the-vegetation-data-clustering-analysis-right
 https://github.com/mhatim99/Hopkins-Test
 
+### Python / antoniolopezmc
 
-Appears to use d=1. fixme
+Update: Added comment to this gist
+
+https://gist.github.com/antoniolopezmc/3acd3007a2649d099be4b2e0674d13df
+
+### Matevzkunaver
+
+fixme
+
+Appears to use d=1.
 https://matevzkunaver.wordpress.com/2017/06/20/hopkins-test-for-cluster-tendency/
 
+### StackExchange
 
-# Matlab
+Update: Added link to publication.
 
-Matlab code that uses d=2. `distances(j) = d(u,S(j,:))^2`. fixme
+Appears to use d=1.
+https://datascience.stackexchange.com/questions/14142/cluster-tendency-using-hopkins-statistic-implementation-in-python?newreg=cea4e39a72e3476f86916513447cb968
+
+### Stackexchange
+
+Update: Added link to publication
+
+The quoted formula from Wikipedia uses "d", but nobody notices that the functions are wrong.
+https://stats.stackexchange.com/questions/332651/validating-cluster-tendency-using-hopkins-statistic
+
+
+### Hopkins-Statistic-Clustering-Tendency
+
+Update: Added link to publication
+
+Appears to use d=1.
+https://github.com/prathmachowksey/Hopkins-Statistic-Clustering-Tendency
+
+
+# Matlab / Fricke
+
+Update: Sent an email with link to publication
+
+Matlab code that uses d=2. `distances(j) = d(u,S(j,:))^2`
 https://fricke.co.uk/DandA/hopkins.htm
 
 
+# Discussion boards etc
 
-# Discussions
+PreCLAS: An Evolutionary Tool for Unsupervised Feature Selection.
+Used clustertend.  fixme
+https://link.springer.com/chapter/10.1007/978-3-030-61705-9_15
+
 
 Interesting discussion of Hopkins and Holgate indexes.  I cannot find any code for calculating the Holgate index, so this could be an interesting addition. fixme
 https://oakmissouri.org/nrbiometrics/
 https://oakmissouri.org/nrbiometrics/topics/hopkins.php
 https://oakmissouri.org/nrbiometrics/topics/holgate.php
 
-
-The quoted formula from Wikipedia uses "d", but nobody notices that the functions are wrong. fixme
-https://stats.stackexchange.com/questions/332651/validating-cluster-tendency-using-hopkins-statistic
-
-
-https://stats.stackexchange.com/questions/274419/how-to-establish-evidence-of-clustering-in-data
 
 
 These people notice there's a problem with "d".
@@ -120,43 +168,62 @@ https://mobilemonitoringsolutions.com/us-arrests-hierarchical-clustering-using-d
 
 @adolfsson2019cluster compared different methods to detect clusterability, including the use of `clustertend::hopkins()`
 
+
 Banerjee. Validating clusters using the Hopkins statistic. Used d=d, H~Beta(m,m) regardless of d.
+
 
 Besag "on the detection of spatial pattern in plant communities".  Could not find this paper.
 
+
 Cross 1980. Some approaches to measuring clustering tendency.
 Technical Report TR-80–03, Computer Science Dept., Michigan State University, 1980.
+
 
 Cross and Jain 1982, Measurement of Clustering Tendency,"  Proceedings 
 IFAC Symposium on Digital Control, New Delhi,  India,  24-29. 
 They extended Hopkins to d dimensions
 
+
 Diggle 1976. "U is the SQUARED DISTANCE".
 
+
 Dubes & Jain 1979. Validity studies in clustering methodologies.
+
 
 Dubes & Zeng. A test for spatial homogeneity in cluster analysis. J Classif 1988 4 33
 They say H ~ Beta(m,n). For small d, 5% sampling is suggested. They mention that Cross & Jain 1982 extended Hopkins to d dimensions.
 
+
 Eberhardt 1967.  Some Developments in 'Distance Sampling'. Biometrics, 23(2), 207–216.
+
 
 Fernández Pierna 2000. Improved algorithm for clustering tendency. Used d=1. Wheat NIR data 100 obj, 700 variates.
 
+
 Fowlkes 1988, Variable selection in clustering, J Classification.
 Note: This does NOT have car data!
+
 
 Fowlkes EB, Gnanadesikan R, Kettenring JR.
 Variable selection in clustering and other contexts. In C. Mallows (editor), Design, Data, and Analysis, Wiley, New York: 1987;13-34.
 Note: Cannot find this book.
 
+
+Hoffman. A test of randomness based on the minimal spanning tree.
+
+
 Holgate, P. [1965a]. Some new tests of randomness. J. Ecol. 53, 261-6. 
+
 
 Holgate, P. [1965b]. Tests of randomness based on distance methods. Biometrika 52, 345-53. 
 
+
 Brian Hopkins (1957). The Concept of Minimal Area. Journal of Ecology, 45(2), 441–449.   doi:10.2307/2256927
+
 
 Jurs, Peter C.; Lawson, Richard G. (1990). Clustering Tendency Applied to Chemical Feature Selection. Drug Information Journal, 24(4), 691–704. doi:10.1177/216847909002400405  
 They claimed Fowlkes (Variable selection in clustering and other contexts) used cars data 56x9: price, mpg, seat len, trunk size, weight, length, radius, displacement, gear ratio.  Note, I cannot find this data!
+
 
 Kittler. Pattern Recognition Theory and Applications.
 https://www.google.com/books/edition/Pattern_Recognition_Theory_and_Applicati/_QerCAAAQBAJ?hl=en&gbpv=1&dq=hopkins+statistic&pg=PA93&printsec=frontcover
@@ -165,18 +232,26 @@ Uses d=d.
 
 Lawson and Peter C. Jurs. New index for clustering tendency and its application to chemical problems. Journal of Chemical Information and Computer Sciences , 30(1):36–41, 1990.  Used d=1. Suggest 10% sampling of points, but did also use higher fractions. Note: Figure 4 (page 39) is a 2-d scatterplot with calculated Hopkins values in table VI. Could be useful to verify they used d=1 to calculate Hopkins.
 
+
 Li, Fasheng; Lianjun Zhang 2007.
 Comparison of point pattern analysis methods for classifying the spatial distributions of spruce-fir stands in the north-east USA
 Forestry: An International Journal of Forest Research, Volume 80, Issue 3, July 2007, Pages 337–349, https://doi.org/10.1093/forestry/cpm010
 " The toroidal edge correction proved to be simple and satisfactory in this study compared with other edge correction methods."
 
 
-Erdal Panayirci; Richard C Dubes (1983). A test for multidimensional clustering tendency. , 16(4), 433–444. doi:10.1016/0031-3203(83)90066-3
+Erdal Panayirci; Richard C Dubes (1983). A test for multidimensional clustering tendency. Pattern Recognition, 16(4), 433–444. doi:10.1016/0031-3203(83)90066-3
 Uses d=d.
+
+
+Petrie, Adam; Willemain, Thomas R. (2013). An empirical study of tests for uniformity in multidimensional data. Computational Statistics & Data Analysis, 64(), 253–268. doi:10.1016/j.csda.2013.02.013
+Fairly recent study. Tests based on minimum spanning tree and "snake run length" are proposed and evaluated for multidimensional data.
+
 
 E. C. Pielou. The Use of Point-to-Plant Distances in the Study of the Pattern of Plant Populations
 
+
 Pielou 1960. A Single Mechanism to Account for Regular, Random and Aggregated Populations. Not useful.
+
 
 Rotondi, Renata (1993). Tests of Randomness Based on the K-NN Distances for Data from a Bounded Region. Probability in the Engineering and Informational Sciences, 7(4), 557–569. doi:10.1017/S0269964800003132
 
@@ -185,9 +260,15 @@ Smith, Stephen. 1982. Structure of Multidimensional Patterns.
 https://d.lib.msu.edu/etd/36982
 
 
+Smith, Stephen. 1984. Testing for uniformity in multidimensional data.
+Uses minimum spanning tree which assumes that the convex hull is a reasonable estimate of the sampling window.
+
+
 Varmuza. Introduction to Multivariate Statistical Analysis in Chemometrics.
 https://www.google.com/books/edition/Introduction_to_Multivariate_Statistical/S4btpoIgGP0C?hl=en&gbpv=1&dq=%22hopkins+statistic%22&pg=PA272&printsec=frontcover
 Uses d=1.
 
-Zeng & Dubes, A Comparison of tests for randomness.
 
+Yang 2017. Multivariate tests of uniformity.
+
+Zeng & Dubes, A Comparison of tests for randomness.

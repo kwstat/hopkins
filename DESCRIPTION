@@ -1,19 +1,20 @@
 Package: hopkins
 Type: Package
-Title: Hopkins statistic for clustering
-Version: 1.0
-Date: 2022-01-01
+Title: Calculate Hopkins Statistic for Clustering
+Version: 1.1
 Authors@R: c(
   person("Kevin","Wright", email="kw.stat@gmail.com", 
   comment=c(ORCID = "0000-0002-0617-8673"), role=c("aut","cre")))
-Description: Calculate Hopkins statistic to assess the clusterability of data. See Hopkins and Skellam (1954) <doi:10.1093/oxfordjournals.aob.a083391>.
-Depends:
-  pdist
-URL: https://kwstat.github.io/hopkins
-BugReports: https://github.com/kwstat/hopkins
-License: GPL (>= 2)
+Description: Calculate Hopkins statistic to assess the clusterability of data. See Wright (2023) <doi:10.32614/RJ-2022-055>.
+URL: https://kwstat.github.io/hopkins/
+BugReports: https://github.com/kwstat/hopkins/
+License: MIT + file LICENSE
 NeedsCompilation: no
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
+Imports:
+  donut,
+  pdist,
+  RANN
 Suggests: 
   knitr,
   rmarkdown,

@@ -2,7 +2,7 @@
 title: "Optimizing the calculation of Hopkins statistic"
 author: "Kevin Wright"
 date: "2021-04-19"
-bibliography: clustertend.bib
+bibliography: hopkins.bib
 output: 
   rmarkdown::html_vignette:
     md_extensions: [ 
@@ -13,8 +13,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
 ---
-
-# A note on optimizing the calculation of Hopkins statistic
 
 The `clustertend::hopkins` function used two nested `for()` loops:
 

@@ -6,17 +6,13 @@
 # Ph.D. dissertation, Univ. Michigan (Ann Arbor, 2005).
 # http://hdl.handle.net/2027.42/125368
 
-Three
-examples of spatial point patterns, reproduced from [13], are shown in Fig. A.1.
+Three examples of spatial point patterns, reproduced from [13], are shown in Fig. A.1.
 
-Panel (a) shows the locations of 65 Japanese black pine saplings in a square of side
-5.7 m [179].
+Panel (a) shows the locations of 65 Japanese black pine saplings in a square of side 5.7 m [179].
 
-Panel (b) the locations of 62 redwood seedlings in a square of side 23
-m [180, 181],
+Panel (b) the locations of 62 redwood seedlings in a square of side 23 m [180, 181],
 
-Panel (c) the pattern formed by the centers of mass of 42 cells from
-insect tissue [182, 181]
+Panel (c) the pattern formed by the centers of mass of 42 cells from insect tissue [182, 181]
 
 libs(spatstat.data)
 
@@ -35,9 +31,9 @@ data(redwood)
 redwood = data.frame(x=redwood$x, y=redwood$y)
 plot(redwood, main="redwood")
 
-hopkins(japanesepines, 10)
-hopkins(redwood, 10)
-hopkins(cells, 10)
+hopkins(cells, 10) # .16-.28
+hopkins(japanesepines, 10) # .38-.62
+hopkins(redwood, 10) # .55-.90
 
 
 
@@ -136,13 +132,13 @@ show_hopkins(cells, m=3)
 #1 - (pbeta(.79, 10, 10) - pbeta(.21, 10, 10) ) # .00466
 hopkins.pval(.79, 10)
 
-# 0.50 .1 
+# 0.50 .1 random
 unlist(lapply(1:100, function(x) hopkins(japanesepines,10))) %>% mean_sd()
 show_hopkins(japanesepines, m=3)
 #1 - (pbeta(.51, 10, 10) - pbeta(.49, 10, 10) ) # .9296
 hopkins.pval(.51, 10)
 
-# .84 .05
+# .84 .05 clustered
 unlist(lapply(1:100, function(x) hopkins(redwood,10))) %>% mean_sd       
 show_hopkins(redwood, m=3)
 #1 - (pbeta(.84, 10, 10) - pbeta(.16, 10, 10) ) # .000498
