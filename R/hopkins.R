@@ -103,7 +103,7 @@ hopkins <- function (X, m=ceiling(nrow(X)/10), d=ncol(X), k=1, U=NULL, method="s
     stop("X must be data.frame or matrix")
 
   if (m >= nrow(X)) 
-    stop("m must be no larger than num of samples")
+    stop("m must be MUCH SMALLER than the number of samples")
 
   if(missing(U)) {
     # U is a matrix of column-wise uniform values sampled from the space of X
