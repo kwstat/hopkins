@@ -4,4 +4,4 @@
 
 # hopkins 1.0 (2022-01-17)
 
-First release to CRAN. Intended to replace `clustertend` package.
+First release to CRAN. Replaces `clustertend` package.

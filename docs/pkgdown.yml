@@ -1,8 +1,0 @@
-pandoc: 2.11.2
-pkgdown: 2.0.1
-pkgdown_sha: ~
-articles:
-  hopkins_optimization: hopkins_optimization.html
-  hopkins_statistic: hopkins_statistic.html
-last_built: 2022-01-09T15:34Z
-
