@@ -1,0 +1,10 @@
+pandoc: 3.1.11
+pkgdown: 2.1.0
+pkgdown_sha: ~
+articles:
+  hopkins_optimization: hopkins_optimization.html
+  hopkins_protocol: hopkins_protocol.html
+last_built: 2024-07-17T12:21Z
+urls:
+  reference: https://kwstat.github.io/hopkins/reference
+  article: https://kwstat.github.io/hopkins/articles
