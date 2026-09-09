@@ -1,0 +1,96 @@
+# Optimizing the calculation of Hopkins statistic
+
+The `clustertend::hopkins` function used two nested `for()` loops:
+
+``` r
+for (i in 1:n) {
+  distp[1] <- dist(rbind(p[i, ], data[1, ]))
+  minqi <- dist(rbind(q[i, ], data[1, ]))
+  for (j in 2:nrow(data)) {
+    distp[j] <- dist(rbind(p[i, ], data[j, ]))
+    error <- q[i, ] - data[j, ]
+    if (sum(abs(error)) != 0) {
+      distq <- dist(rbind(q[i, ], data[j, ]))
+      if (distq < minqi) 
+        minqi <- distq
+    }
+  }
+```
+
+Whenever nested `for()` loops are used, you should immediately consider
+if it possible to vectorize one or both loops. In this case, we can
+define a function that calculates the euclidean distance from a vector
+to the nearest row of a matrix and then use this function to eliminate
+the inner loop:
+
+``` r
+
+DistVecToMat <- function(x,Y){
+  min(apply(Y, 1, function(yi) sqrt(sum((x-yi)^2))))
+}
+# DistVecToMat(c(1,2), matrix(c(4,5,6,7), nrow=2, byrow=TRUE))
+# 4.242641 7.071068 # sqrt(c(18,50)) 
+    
+# For each ith row of sample, calculate the distance of:
+#   U[i,] to X
+#   W[i,] to X[-k[i] , ], i.e. omitting W[i,] from X
+dux <- rep(NA, n)
+dwx <- rep(NA, n)
+for(i in 1:n) {
+  dux[i] <- DistVecToMat(U[i,], X)
+  dwx[i] <- DistVecToMat(W[i,], X[-k[i],])
+}
+```
+
+When thinking about manipulating two vectors or two matrices, you should
+always keep in mind that there are R functions like
+[`crossprod()`](https://rdrr.io/r/base/crossprod.html),
+[`outer()`](https://rdrr.io/r/base/outer.html), and
+[`apply()`](https://rdrr.io/r/base/apply.html) that might come in handy.
+I played around with these functions but was having trouble getting the
+results I wanted. I then used Google to search for ideas and discovered
+the `pdist` package, which can efficiently compute the distance between
+all pairs of rows of two matrices. This is exactly what we need.
+
+``` r
+
+# pdist(W,X) computes distance between rows of W and rows of X
+tmp <- as.matrix(pdist(W,X))
+dwx <- apply(tmp, 1, min)
+
+# pdist(U,X) computes distance between rows of U and rows of X
+tmp <- as.matrix(pdist(U,X))
+dux <- apply(tmp, 1, min)
+```
+
+Finally, there’s two ways two different ways to change some elements of
+the distance matrix to be Inf:
+
+``` r
+
+library(microbenchmark)
+
+# Method 1. Loop over vector 1:n
+# for(i in 1:m) dwx[i,k[i]] <- Inf
+microbenchmark(hopkins(X12, 500))
+## Unit: milliseconds
+##                expr     min      lq     mean  median       uq      max neval
+##  hopkins(X12, 500) 38.9493 42.8045 50.73876 45.0668 47.69945 120.9366   100
+
+# Method 2. Build a matrix of indexes to the cells that need changing
+# dwx[ matrix( c(1:n, k), nrow=n) ] <- Inf
+microbenchmark(hopkins(X12, 500))
+## Unit: milliseconds
+##                expr     min       lq     mean   median      uq      max neval
+##  hopkins(X12, 500) 39.2668 42.41565 50.21628 43.74215 46.9462 126.3522   100
+```
+
+The median times across 100 calls to the function are virtually
+identical for this test case. Results could be different for
+smaller/larger datasets. In our (purely subjective) taste, the loop
+method is a bit easier to understand.
+
+How good is the optimization? In one simulated-data example with 1000
+rows and 2 columns, sampling 500 rows, the non-optimized function used
+about 17 seconds, while the optimized function used approximately 0.05
+seconds.
