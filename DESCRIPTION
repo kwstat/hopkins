@@ -1,14 +1,14 @@
 Type: Package
 Package: hopkins
 Title: Calculate Hopkins Statistic for Clustering
-Version: 1.1
+Version: 1.2
 Authors@R: 
     person("Kevin", "Wright", , "kw.stat@gmail.com", role = c("aut", "cre", "cph"),
            comment = c(ORCID = "0000-0002-0617-8673"))
 Description: Calculate Hopkins statistic to assess the clusterability of data. See Wright (2023) <doi:10.32614/RJ-2022-055>.
 License: MIT + file LICENSE
 URL: https://kwstat.github.io/hopkins/
-BugReports: https://github.com/kwstat/hopkins/
+BugReports: https://github.com/kwstat/hopkins/issues
 Imports:
     donut,
     pdist,
@@ -23,4 +23,4 @@ VignetteBuilder:
 Config/testthat/edition: 3
 Encoding: UTF-8
 NeedsCompilation: no
-RoxygenNote: 7.3.2
+Config/roxygen2/version: 8.1.0

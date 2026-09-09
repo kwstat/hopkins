@@ -1,24 +1,12 @@
-# hopkins 1.1
+# hopkins 1.2
 
-* Fix docType issue requested by CRAN.
+* Fix CRAN check NOTE
 
 ## Test environments & results
 
-* local R 4.3.1 on Windows 10
-* WinBuilder Dev
-* Rhub
-
-No problems local. Rhub has incomplete cleanup of files.
-
-## CRAN package status check
-
-https://cran.r-project.org/web/checks/check_results_kw.stat_at_gmail.com.html
-Current CRAN status: OK: 13
-
-## Reverse depends
-
-None
-
+* local R 4.6.1 on Windows 11
+* winbuilder r-devel
+* winbuilder r-release
 
 
 # hopkins 1.0

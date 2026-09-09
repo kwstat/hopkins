@@ -4,12 +4,12 @@
 \alias{hopkins.pval}
 \title{Calculate the p-value for Hopkins statistic}
 \usage{
-hopkins.pval(x, n)
+hopkins.pval(x, m)
 }
 \arguments{
 \item{x}{Observed value of Hopkins statistic}
 
-\item{n}{Number of events/points sampled.}
+\item{m}{Number of events/points sampled.}
 }
 \value{
 A p-value between 0 and 1.

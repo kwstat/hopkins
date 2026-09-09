@@ -43,7 +43,7 @@ hopkins.pval(0.21, 10) # .00466205
 
 It is easy to mis-use Hopkins statistic.  Here are some things you MUST think about.  See the vignettes for more details.
 
-1. **Does the data need to be centered and scaled to unit variance??**
+1. **Does the data need to be centered and scaled to unit variance?**
 2. **Is the number of events n > 100 and the number of randomly-sampled events at most 10% of n?**
 3. **Is spatial randomness of the events even possible?** If the events are known or suspected to be correlated, this violates the null hypothesis of spatial uniformity, and may also mean that the sampling frame is not shaped like a hypercube.
 4. **Could nearest-neighbor events have occurred outside the boundary of the sampling frame?** If yes, it may be appropriate to calculate nearest-neighbor distances using a torus geometry.

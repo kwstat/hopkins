@@ -19,18 +19,19 @@ Under the null distribution of spatial randomness, the value of the statistic sh
 
 # A protocol for using Hopkins statistic
 
-1. **Does the data need to be scaled?**
+The important point of this protocol is to raise awareness of potential problems. We leave it to the practitioner to decide what do with the answers to these questions. 
+
+1. **Does the data need to be centered and scaled to unit variance?
 1. **Is the number of events $n > 100$ and the number of randomly-sampled events at most 10% of $n$?** This is recommended by @cross1982measurement.
 1. **Is spatial randomness of the events even possible?** If the events are known or suspected to be correlated, this violates the null hypothesis of spatial uniformity, and may also mean that the sampling frame is not shaped like a hypercube.
 1. **Could nearest-neighbor events have occurred outside the boundary of the sampling frame?** If yes, it may be appropriate to calculate nearest-neighbor distances using a torus geometry.
 1. **Is the sampling frame non-rectangular?** If yes, then be extremely careful with the use of Hopkins statistic in how points are samples from $U$.
 1. **Is the dimension of the data much greater than 2?** Edge effects are more common in higher dimensions.
-
-The important point of this protocol is to raise awareness of potential problems. We leave it to the practitioner to decide what do with the answers to these questions. 
+1. **Is the dimension of the data large?** It is difficult to detect spatial randomness in a large number of dimensions.
 
 ### Example 1
 
-We can simulate 1000 points uniformly in a unit square and then calculate Hopkins statistic, which is 0.52.
+We can simulate 1000 points uniformly in a unit square and then calculate Hopkins statistic.
 
 ```{r}
 library(hopkins)
@@ -38,15 +39,21 @@ set.seed(42)
 dat1 <- matrix(runif(2000), ncol=2)
 plot(dat1)
 hopkins(dat1) # .52
+hopkins.pval(.52, 200)
 ```
+
+The value of the statistic is 0.52, which is not far from 0.5. The p-value of the test is non-significant. Spatial uniformity of the points is possible. 
 
 ### Example 2
 
-Simulate 1000 points from a bivariate normal distribution (with 0 covariance). The sampling frame for generating new points $u$ is from the minimum value to maximum value of the events in each axis. Roughly -3 to 3 for Normal data. The points form a circular "cluster" within this bounding box and the value of Hopkins statistic is 0.89.
+Simulate 1000 points from a bivariate normal distribution (with 0 covariance). The sampling frame for generating new points $u$ is from the minimum value to maximum value of the events in each axis. Roughly -3 to 3 for Normal data. The points form a circular "cluster" within this bounding box.
 
 ```{r}
 set.seed(42)
 dat2 <- matrix(rnorm(1000), ncol=2)
 plot(dat2)
 hopkins(dat2) # .89
+hopkins.pval(.89, 100)
 ```
+
+The value of Hopkins statistic is 0.89. This value is far from 0.5. The p-value of the test is significant. The distribution of points is non-uniform.

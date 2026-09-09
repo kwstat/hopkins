@@ -1,3 +1,7 @@
+# hopkins 1.2
+
+* Documentation pages now created via Github Actions.
+
 
 # hopkins 1.1 (2023-08-19)
 
