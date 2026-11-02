@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   hopkins_optimization: hopkins_optimization.html
   hopkins_protocol: hopkins_protocol.html
-last_built: 2026-09-09T15:36Z
+last_built: 2026-11-02T17:26Z
 urls:
   reference: https://kwstat.github.io/hopkins/reference
   article: https://kwstat.github.io/hopkins/articles

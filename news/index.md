@@ -1,6 +1,12 @@
 # Changelog
 
+## hopkins 1.3
+
+- Fix pandoc parsing error.
+
 ## hopkins 1.2
+
+CRAN release: 2026-09-09
 
 - Documentation pages now created via Github Actions.
 
