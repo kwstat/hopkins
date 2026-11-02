@@ -1,3 +1,8 @@
+# hopkins 1.3
+
+* Fix pandoc parsing error.
+
+
 # hopkins 1.2
 
 * Documentation pages now created via Github Actions.

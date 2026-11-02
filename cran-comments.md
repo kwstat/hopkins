@@ -1,3 +1,16 @@
+# hopkins 1.3
+
+* Fixed YAML parse error in vignette headers that caused vignette re-building to fail under newer pandoc versions.
+
+## Test environments & results
+
+* local R 4.6.1 on Windows 11
+* winbuilder r-devel
+* winbuilder r-release
+
+All OK
+
+
 # hopkins 1.2
 
 * Fix CRAN check NOTE
